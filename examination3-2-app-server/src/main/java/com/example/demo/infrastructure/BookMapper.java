@@ -16,4 +16,5 @@ public interface BookMapper {
      * @return Book のリスト
      */
     List<Book> selectAll();
+
 }
