@@ -1,0 +1,40 @@
+{
+  "$id": "https://example.com/books.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GET All Books",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["books"],
+  "properties" : {
+    "books": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/book"
+      }
+    }
+  },
+  "definitions": {
+    "book": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "author", "publisher", "price"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "publisher": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

@@ -40,8 +40,8 @@ public class BookControllerTest {
     void ゲットリクエストで得た全件データをjsonにして返す() throws Exception {
         //setup
         List<Book> bookList = List.of(
-                new Book("1", "ワンピース", "oda", "ジャンプ", "300"),
-                new Book("2", "ワンピース", "higashi", "ジャンプ", "400")
+                new Book("1", "ワンピース", "oda", "ジャンプ", 300),
+                new Book("2", "ワンピース", "higashi", "ジャンプ", 400)
         );
 
         when(bookService.retrieveAll()).thenReturn(bookList);
@@ -53,12 +53,12 @@ public class BookControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.books[0].id").value("1"))
                 .andExpect(jsonPath("$.books[0].title").value("ワンピース"))
-                .andExpect(jsonPath("$.books[0].auther").value("oda"))
+                .andExpect(jsonPath("$.books[0].author").value("oda"))
                 .andExpect(jsonPath("$.books[0].publisher").value("ジャンプ"))
                 .andExpect(jsonPath("$.books[0].price").value("300"))
                 .andExpect(jsonPath("$.books[1].id").value("2"))
                 .andExpect(jsonPath("$.books[1].title").value("ワンピース"))
-                .andExpect(jsonPath("$.books[1].auther").value("higashi"))
+                .andExpect(jsonPath("$.books[1].author").value("higashi"))
                 .andExpect(jsonPath("$.books[1].publisher").value("ジャンプ"))
                 .andExpect(jsonPath("$.books[1].price").value("400"));
     }

@@ -17,10 +17,10 @@ public class BookMapperTest {
     void 全件取得できる() {
         // setup
         List<Book> expected = List.of(
-                new Book("1", "ワンピース", "oda", "ジャンプ", "300"),
-                new Book("2", "ワンピース", "higashi", "ジャンプ", "400"),
-                new Book("3", "ワンピース", "togashi", "ジャンプ", "500"),
-                new Book("4", "ワンピース", "kishi", "ジャンプ", "600")
+                new Book("1", "ワンピース", "oda", "ジャンプ", 300),
+                new Book("2", "ワンピース", "higashi", "ジャンプ", 400),
+                new Book("3", "ワンピース", "togashi", "ジャンプ", 500),
+                new Book("4", "ワンピース", "kishi", "ジャンプ", 600)
         );
 
         // execute

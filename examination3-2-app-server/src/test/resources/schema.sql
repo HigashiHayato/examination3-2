@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS books (
     title VARCHAR(50) NOT NULL,
     author VARCHAR(50) NOT NULL,
     publisher VARCHAR(50) NOT NULL,
-    price VARCHAR(50) NOT NULL
+    price INT NOT NULL
 );

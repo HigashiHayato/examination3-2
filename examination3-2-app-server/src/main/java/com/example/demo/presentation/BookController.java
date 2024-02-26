@@ -20,6 +20,17 @@ public class BookController {
     private final BookService bookService;
 
     /**
+     * 標準のエンドポイントです。"hello world"という文字列を返します.
+     *
+     * @return "hello world"
+     */
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String standard() {
+        return "hello world";
+    }
+
+    /**
      * すべての Book を取得するエンドポイントです.
      *
      * @return BooksResponseオブジェクト

@@ -33,7 +33,7 @@ public record Book(
         /**
          * 書籍の価格.
          */
-        String price
+        Integer price
 ) {
 
 }

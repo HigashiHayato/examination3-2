@@ -1,0 +1,22 @@
+{
+  "$id": "https://example.com/error.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "error message",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "message", "details"],
+  "properties" : {
+    "code": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

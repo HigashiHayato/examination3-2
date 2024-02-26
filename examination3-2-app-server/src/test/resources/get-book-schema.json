@@ -1,0 +1,25 @@
+{
+  "$id": "https://example.com/book.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GET Book",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "author", "publisher", "price"],
+  "properties" : {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number"
+    }
+  }
+}

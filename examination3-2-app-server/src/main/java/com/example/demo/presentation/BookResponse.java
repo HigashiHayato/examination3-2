@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record BookResponse(
         @JsonProperty("id") String id,
         @JsonProperty("title") String title,
-        @JsonProperty("auther") String author,
+        @JsonProperty("author") String author,
         @JsonProperty("publisher") String publisher,
-        @JsonProperty("price") String price
+        @JsonProperty("price") Integer price
 ) {
     /**
      * 指定された Book オブジェクトから BookResponse を作成して返します.
