@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13.1-alpine
+    restart: always
+    environment:
+      TZ: "Asia/Tokyo"
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: appuser
+      POSTGRES_DB: book_db
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./postgres/initdb:/docker-entrypoint-initdb.d
+
+  sonarqube:
+    image: sonarqube:10.3.0-community
+    ports:
+      - "9000:9000"
+    profiles: [ "local" ]
+
+volumes:
+  postgres:
+  pgadmin:

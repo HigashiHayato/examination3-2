@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/book_db
+    username: appuser
+    password: appuser
+    initialization-mode: always
+  flyway:
+    enable: true
+    baseline-on-migrate: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
