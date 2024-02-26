@@ -1,7 +1,7 @@
 package com.example.demo.domain;
 
 /**
- * 書籍エンティティを表します.
+ * 書籍エンティティを表すレコードクラスです.
  *
  * @param id ID
  * @param title タイトル
