@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.example.demo.domain.Book;
 import com.example.demo.infrastructure.BookMapper;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 public class BookServiceTest {
 
@@ -17,6 +19,11 @@ public class BookServiceTest {
 
     @Mock
     private BookMapper mapper;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     void 全件取得により書籍リストが返される() {
