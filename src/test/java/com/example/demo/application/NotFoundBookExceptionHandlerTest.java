@@ -1,12 +1,24 @@
 package com.example.demo.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
+import java.util.Objects;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
 
 public class NotFoundBookExceptionHandlerTest {
 
+    @InjectMocks
+    NotFoundBookExceptionHandler sut;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
     @Test
     void 正しいレスポンスが返される() {
         // setup
@@ -18,13 +30,13 @@ public class NotFoundBookExceptionHandlerTest {
                 new String[0]
         );
         // execute
-        BookResponse actual = sut.handleNotFoundBookException(exception);
+        ResponseEntity<BookResponse> actual = sut.handleNotFoundBookException(exception);
 
         // assert
-        assertThat(actual.code()).isEqualTo(expected.code());
-        assertThat(actual.message()).isEqualTo(expected.message());
-        assertThat(actual.details()).isEmpty();
-        assertThat(actual.getHttpStatus).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(Objects.requireNonNull(actual.getBody()).code()).isEqualTo(expected.code());
+        assertThat(actual.getBody().message()).isEqualTo(expected.message());
+        assertThat(actual.getBody().details()).isEmpty();
+        assertThat(actual.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
 }
