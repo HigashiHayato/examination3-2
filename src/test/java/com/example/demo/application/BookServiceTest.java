@@ -44,19 +44,18 @@ public class BookServiceTest {
 
         // assert
         assertEquals(bookList, actual);
+    }
 
-        @Test
-        void 選択した従業員idが存在する場合() {
-            // setup
-            Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+    @Test
+    void 選択した従業員idが存在する場合() {
+        // setup
+        Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+        when(mapper.select(any())).thenReturn(book);
 
-            when(mapper.select(any())).thenReturn(book);
+         // execute
+        Book actual = sut.retrieve("1");
 
-            // execute
-            Book actual = sut.retrieve("1");
-
-            // assert
-            assertThat(actual).isEqualTo(book);
-        }
+        // assert
+        assertThat(actual).isEqualTo(book);
     }
 }
