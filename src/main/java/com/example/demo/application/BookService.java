@@ -37,6 +37,9 @@ public class BookService {
          */
         public Book retrieve(String id) {
                 Book book = mapper.select(id);
+                if (isNull(book)) {
+                        throw new NotFoundBookException(id);
+                }
                 return book;
         }
 
