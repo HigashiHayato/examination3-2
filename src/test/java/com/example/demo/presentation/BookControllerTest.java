@@ -102,7 +102,7 @@ public class BookControllerTest {
                                 .content(new ObjectMapper().writeValueAsString(postRequestBook))
                 )
                 .andExpect(status().isCreated())
-                .andExpect(header().string("Location", "http://localhost/v1/book/89"));
+                .andExpect(header().string("Location", "http://localhost/v1/books/89"));
     }
 
 }
