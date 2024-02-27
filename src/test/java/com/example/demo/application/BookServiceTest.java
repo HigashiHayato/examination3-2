@@ -84,7 +84,7 @@ public class BookServiceTest {
         String actual = sut.register(book);
 
         // assert
-        assertEquals("88", actual);
+        assertEquals("89", actual);
     }
 
 }

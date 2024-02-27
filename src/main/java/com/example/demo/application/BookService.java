@@ -26,7 +26,7 @@ public class BookService {
          * @return 全ての Book のリスト
          */
         public List<Book> retrieveAll() {
-            return mapper.selectAll();
+                return mapper.selectAll();
         }
 
         /**
@@ -41,6 +41,25 @@ public class BookService {
                         throw new NotFoundBookException(id);
                 }
                 return book;
+        }
+
+        /**
+         * 新しい Book を登録します.
+         *
+         * @param book 登録する PostRequestBookDto
+         * @return 挿入した書籍の ID
+         */
+        public String register(PostRequestBookDto book) {
+                String nextId = String.valueOf(Integer.parseInt(mapper.getMaxId()) + 1);
+                mapper.insert(new Book(
+                        nextId,
+                        book.title(),
+                        book.author(),
+                        book.publisher(),
+                        book.price())
+                );
+
+                return nextId;
         }
 
 }
