@@ -57,7 +57,7 @@ public class BookServiceTest {
         Book actual = sut.retrieve("1");
 
         // assert
-        assertThat(actual).isEqualTo(book);
+        assertEquals(book, actual);
     }
 
     @Test

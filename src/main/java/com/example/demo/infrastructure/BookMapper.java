@@ -33,4 +33,11 @@ public interface BookMapper {
      */
     int insert(Book book);
 
+    /**
+     * テーブル内の最大の Book ID を取得します.
+     *
+     * @return 最大の Book ID
+     */
+    String getMaxId();
+
 }

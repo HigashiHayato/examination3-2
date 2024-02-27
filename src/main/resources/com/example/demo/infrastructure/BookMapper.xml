@@ -22,5 +22,9 @@
         )
     </insert>
 
+    <select id="getMaxId" resultType="String">
+        SELECT MAX(id) FROM books;
+    </select>
+
 
 </mapper>
