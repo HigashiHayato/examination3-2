@@ -75,9 +75,9 @@ public class BookControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/books/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("id").value("2"))
-                .andExpect(jsonPath("title").value("Jiro"))
-                .andExpect(jsonPath("author").value("Sato"))
+                .andExpect(jsonPath("id").value("1"))
+                .andExpect(jsonPath("title").value("ワンピース"))
+                .andExpect(jsonPath("author").value("oda"))
                 .andExpect(jsonPath("publisher").value("ジャンプ"))
                 .andExpect(jsonPath("price").value(300));
 

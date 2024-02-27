@@ -21,6 +21,6 @@ public record BooksResponse(
      * @return 書籍レスポンスのリストを表す BooksResponse インスタンス
      */
     public static BooksResponse of(List<Book> bookList) {
-        return new BooksResponse(bookList.stream().map(BookResponse::of).toList());
+        return new BooksResponse(bookList.stream().map(BookResponse::convertToBookResponse).toList());
     }
 }

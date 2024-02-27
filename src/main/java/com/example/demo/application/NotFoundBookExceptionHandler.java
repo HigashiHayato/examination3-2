@@ -20,9 +20,9 @@ public class NotFoundBookExceptionHandler {
      */
     @ExceptionHandler(NotFoundBookException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<BookResponse> handleNotFoundBookException(NotFoundBookException exception) {
+    public ResponseEntity<NotFoundBookResponse> handleNotFoundBookException(NotFoundBookException exception) {
 
-        BookResponse response = new BookResponse(
+        NotFoundBookResponse response = new NotFoundBookResponse(
                 "0003",
                 "specified book [id = " + exception.getMessage() + "] is not found.",
                 new String[0]

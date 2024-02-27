@@ -19,7 +19,7 @@ public record BookResponse(
      * @param book 書籍情報を含む Book オブジェクト
      * @return BookResponse オブジェクト
      */
-    public static BookResponse of(Book book) {
+    public static BookResponse convertToBookResponse(Book book) {
         return new BookResponse(
                 book.id(),
                 book.title(),
