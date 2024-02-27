@@ -1,6 +1,7 @@
 package com.example.demo.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -57,5 +58,17 @@ public class BookServiceTest {
 
         // assert
         assertThat(actual).isEqualTo(book);
+    }
+
+    @Test
+    void 選択した書籍idが存在しない場合() {
+        // setup
+        when(mapper.select(any())).thenReturn(null);
+
+        // execute
+        // assert
+        assertThatThrownBy(() -> sut.retrieve("99"))
+                .isInstanceOf(NotFoundBookException.class)
+                .hasMessage("99");
     }
 }
