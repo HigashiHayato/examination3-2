@@ -42,4 +42,14 @@ public class BookMapperTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void テーブルに1行データが挿入される() {
+        // setup
+        Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+
+        // execute
+        // assert
+        assertEquals(1, sut.insert(book));
+    }
+
 }
