@@ -52,4 +52,14 @@ public class BookMapperTest {
         assertEquals(1, sut.insert(book));
     }
 
+    @Test
+    void テーブルにあるデータのうち最大のidを取得できる() {
+        // setup
+        // execute
+        String actual = sut.getMaxId();
+
+        // assert
+        assertEquals("4", actual);
+    }
+
 }

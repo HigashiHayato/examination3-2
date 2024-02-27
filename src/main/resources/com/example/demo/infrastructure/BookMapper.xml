@@ -21,4 +21,6 @@
         #{price, jdbcType=VARCHAR}
         )
     </insert>
+
+
 </mapper>
