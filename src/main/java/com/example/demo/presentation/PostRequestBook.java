@@ -10,6 +10,21 @@ public record PostRequestBook(
         String publisher,
         Integer price
 ) {
+    public PostRequestBook {
+        if (isNull(title)) {
+            throw new BookValidationException("title");
+        }
+        if (isNull(author)) {
+            throw new BookValidationException("author");
+        }
+        if (isNull(publisher)) {
+            throw new BookValidationException("publisher");
+        }
+        if (isNull(price)) {
+            throw new BookValidationException("price");
+        }
+    }
+
     public PostRequestBookDto convertToDto() {
         return new PostRequestBookDto(title, author, publisher, price);
     }

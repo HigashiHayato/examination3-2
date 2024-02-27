@@ -1,4 +1,4 @@
-package com.example.demo.presentation;
+package com.example.demo.presentation.response;
 
 import com.example.demo.domain.Book;
 import com.fasterxml.jackson.annotation.JsonProperty;
