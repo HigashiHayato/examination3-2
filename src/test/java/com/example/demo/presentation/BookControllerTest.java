@@ -1,12 +1,15 @@
 package com.example.demo.presentation;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.demo.application.BookService;
 import com.example.demo.domain.Book;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -81,6 +84,25 @@ public class BookControllerTest {
                 .andExpect(jsonPath("publisher").value("ジャンプ"))
                 .andExpect(jsonPath("price").value(300));
 
+    }
+
+    @Test
+    void POSTリクエストにより正常なデータを送った場合() throws Exception {
+        //setup
+        when(bookService.register(any()))
+                .thenReturn("89");
+
+        PostRequestBook postRequestBook = new PostRequestBook("ワンピース", "oda", "ジャンプ", 300);
+
+        // execute
+        // assert
+        mockMvc.perform(
+                        MockMvcRequestBuilders.post("/v1/books")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(new ObjectMapper().writeValueAsString(postRequestBook))
+                )
+                .andExpect(status().isCreated())
+                .andExpect(header().string("Location", "http://localhost/v1/book/89"));
     }
 
 }
