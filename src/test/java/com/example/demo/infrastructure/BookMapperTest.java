@@ -30,4 +30,16 @@ public class BookMapperTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void idを指定してデータを取得できる() {
+        // setup
+        Book expected = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+
+        // execute
+        Book actual = sut.select("1");
+
+        // assert
+        assertEquals(expected, actual);
+    }
+
 }
