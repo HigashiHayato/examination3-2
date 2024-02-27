@@ -63,4 +63,24 @@ public class BookControllerTest {
                 .andExpect(jsonPath("$.books[1].price").value("400"));
     }
 
+    @Test
+    void ゲットリクエストで指定したデータをjsonにして返す() throws Exception {
+        //setup
+        Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+
+        when(bookService.retrieve("1")).thenReturn(book);
+
+        // execute
+        // assert
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/books/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("id").value("2"))
+                .andExpect(jsonPath("title").value("Jiro"))
+                .andExpect(jsonPath("author").value("Sato"))
+                .andExpect(jsonPath("publisher").value("ジャンプ"))
+                .andExpect(jsonPath("price").value(300));
+
+    }
+
 }
