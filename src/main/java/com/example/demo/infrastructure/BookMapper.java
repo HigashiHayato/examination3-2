@@ -24,4 +24,13 @@ public interface BookMapper {
      * @return 指定された ID の Book オブジェクト
      */
     Book select(String id);
+
+    /**
+     * 新しい Book を挿入します.
+     *
+     * @param book 挿入する Book オブジェクト
+     * @return 挿入が成功した場合は1、それ以外の場合は0
+     */
+    int insert(Book book);
+
 }

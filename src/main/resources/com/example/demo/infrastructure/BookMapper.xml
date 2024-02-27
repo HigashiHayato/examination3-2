@@ -10,4 +10,15 @@
         SELECT * FROM books
         WHERE id = #{id, jdbcType=VARCHAR}
     </select>
+
+    <insert id="insert" parameterType="com.example.demo.domain.Book">
+        INSERT INTO books (id, title, author, publisher, price)
+        VALUES (
+        #{id, jdbcType=VARCHAR},
+        #{title, jdbcType=VARCHAR},
+        #{author, jdbcType=VARCHAR},
+        #{publisher, jdbcType=VARCHAR},
+        #{price, jdbcType=VARCHAR}
+        )
+    </insert>
 </mapper>

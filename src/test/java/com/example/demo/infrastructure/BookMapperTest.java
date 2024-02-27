@@ -45,7 +45,7 @@ public class BookMapperTest {
     @Test
     void テーブルに1行データが挿入される() {
         // setup
-        Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+        Book book = new Book("6", "ワンピース", "oda", "ジャンプ", 300);
 
         // execute
         // assert
