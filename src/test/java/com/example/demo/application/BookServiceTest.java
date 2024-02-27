@@ -71,4 +71,20 @@ public class BookServiceTest {
                 .isInstanceOf(NotFoundBookException.class)
                 .hasMessage("99");
     }
+
+
+    @Test
+    void データを挿入した際挿入したidが返される() {
+        // setup
+        when(mapper.getMaxId()).thenReturn("88");
+
+        PostRequestBookDto book = new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
+
+        // execute
+        String actual = sut.register(book);
+
+        // assert
+        assertEquals("88", actual);
+    }
+
 }
