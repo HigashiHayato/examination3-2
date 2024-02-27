@@ -1,5 +1,7 @@
 package com.example.demo.application;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -42,5 +44,19 @@ public class BookServiceTest {
 
         // assert
         assertEquals(bookList, actual);
+
+        @Test
+        void 選択した従業員idが存在する場合() {
+            // setup
+            Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+
+            when(mapper.select(any())).thenReturn(book);
+
+            // execute
+            Book actual = sut.retrieve("1");
+
+            // assert
+            assertThat(actual).isEqualTo(book);
+        }
     }
 }
