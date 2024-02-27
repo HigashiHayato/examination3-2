@@ -6,4 +6,8 @@
         SELECT * FROM books
     </select>
 
+    <select id="select" resultType="com.example.demo.domain.Book">
+        SELECT * FROM books
+        WHERE id = #{id, jdbcType=VARCHAR}
+    </select>
 </mapper>

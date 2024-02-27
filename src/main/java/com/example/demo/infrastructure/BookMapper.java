@@ -17,4 +17,11 @@ public interface BookMapper {
      */
     List<Book> selectAll();
 
+    /**
+     * 指定された ID の Book を取得します.
+     *
+     * @param id 取得する Book の ID
+     * @return 指定された ID の Book オブジェクト
+     */
+    Book select(String id);
 }
