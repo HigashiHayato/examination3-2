@@ -75,7 +75,7 @@ public class BookMapperTest {
     @Test
     void テーブルの指定した行を削除できる場合() {
         // setup & execute
-        int actual = sut.delete("99");
+        int actual = sut.delete("4");
 
         // assert
         assertEquals(1, actual);

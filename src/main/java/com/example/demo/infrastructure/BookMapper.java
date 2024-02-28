@@ -47,4 +47,12 @@ public interface BookMapper {
      * @return 更新が成功した場合は1、それ以外の場合は0
      */
     int update(Book book);
+
+    /**
+     * 指定された ID の Book を削除します.
+     *
+     * @param id 削除する Book の ID
+     * @return 削除が成功した場合は1、それ以外の場合は0
+     */
+    int delete(String id);
 }

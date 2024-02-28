@@ -35,4 +35,9 @@
         WHERE id = #{id, jdbcType=VARCHAR}
     </update>
 
+    <delete id="delete">
+        DELETE FROM books
+        WHERE id = #{id, jdbcType=VARCHAR}
+    </delete>
+
 </mapper>
