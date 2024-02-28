@@ -125,4 +125,16 @@ public class BookServiceTest {
         // assert
         verify(mapper, times(1)).delete("1");
     }
+
+    @Test
+    void 行を削除する際指定したidがテーブルに存在しない場合() {
+        // setup
+        when(mapper.delete(any())).thenReturn(0);
+
+        // execute
+        // assert
+        assertThatThrownBy(() -> sut.delete("99"))
+                .isInstanceOf(NotFoundBookException.class)
+                .hasMessage("99");
+    }
 }
