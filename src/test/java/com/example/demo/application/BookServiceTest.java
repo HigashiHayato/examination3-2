@@ -20,6 +20,9 @@ public class BookServiceTest {
     private final Book BOOK =
             new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 
+    private final PostRequestBookDto BOOK_DTO =
+            new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
+
     @InjectMocks
     private BookService sut;
 
@@ -80,10 +83,8 @@ public class BookServiceTest {
         // setup
         when(mapper.getMaxId()).thenReturn("88");
 
-        PostRequestBookDto book = new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
-
         // execute
-        String actual = sut.register(book);
+        String actual = sut.register(BOOK_DTO);
 
         // assert
         assertEquals("89", actual);
@@ -92,11 +93,10 @@ public class BookServiceTest {
     @Test
     void 行を更新する際指定したidがテーブルに存在する場合() {
         // setup
-        PostRequestBookDto dto = new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
         when(mapper.select("1")).thenReturn(BOOK);
 
         // execute
-        sut.update(dto, "1");
+        sut.update(BOOK_DTO, "1");
 
         // assert
         verify(mapper, times(1)).update(BOOK);
@@ -105,13 +105,11 @@ public class BookServiceTest {
     @Test
     void 行を更新する際指定したidがテーブルに存在しない場合() {
         // setup
-        PostRequestBookDto dto = new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
-
         when(mapper.select("99")).thenReturn(null);
 
         // execute
         // assert
-        assertThatThrownBy(() -> sut.update(dto, "99"))
+        assertThatThrownBy(() -> sut.update(BOOK_DTO, "99"))
                 .isInstanceOf(NotFoundBookException.class)
                 .hasMessage("99");
     }
