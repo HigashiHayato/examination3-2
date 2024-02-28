@@ -50,7 +50,7 @@ public class BookService {
          * @param book 登録する PostRequestBookDto
          * @return 挿入した書籍の ID
          */
-        public String register(PostRequestBookDto book) {
+        public String register(RequestBookDto book) {
                 String nextId = String.valueOf(Integer.parseInt(mapper.getMaxId()) + 1);
                 mapper.insert(new Book(
                         nextId,
@@ -70,7 +70,7 @@ public class BookService {
          * @param id 更新対象の Book の ID
          * @throws NotFoundBookException 指定された ID の Book が存在しない場合
          */
-        public void update(PostRequestBookDto book, String id) {
+        public void update(RequestBookDto book, String id) {
                 Book existingBook = mapper.select(id);
 
                 if (isNull(existingBook)) {

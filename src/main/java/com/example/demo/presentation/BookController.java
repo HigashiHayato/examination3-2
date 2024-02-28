@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -81,5 +82,17 @@ public class BookController {
                 .toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    /**
+     * 指定された ID の Book を部分的に更新するエンドポイントです.
+     *
+     * @param book 更新する Book オブジェクト
+     * @param id 更新する Book の ID
+     */
+    @PatchMapping("v1/books/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void patch(@RequestBody PatchRequestBook book, @PathVariable String id) {
+        bookService.update(book.convertToDto(), id);
     }
 }

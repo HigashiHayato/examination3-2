@@ -20,8 +20,8 @@ public class BookServiceTest {
     private final Book BOOK =
             new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 
-    private final PostRequestBookDto BOOK_DTO =
-            new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
+    private final RequestBookDto BOOK_DTO =
+            new RequestBookDto("ワンピース", "oda", "ジャンプ", 300);
 
     @InjectMocks
     private BookService sut;

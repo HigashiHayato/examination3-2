@@ -112,7 +112,7 @@ public class BookControllerTest {
 
         // execute
         // assert
-        mockMvc.perform(MockMvcRequestBuilders.patch("/v1/book/2")
+        mockMvc.perform(MockMvcRequestBuilders.patch("/v1/books/2")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(postRequestBook))
                 )
