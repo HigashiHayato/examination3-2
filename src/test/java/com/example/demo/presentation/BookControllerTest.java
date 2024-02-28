@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.demo.application.BookService;
+import com.example.demo.application.RequestBookDto;
 import com.example.demo.domain.Book;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
@@ -23,6 +24,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 public class BookControllerTest {
+
+    private final PostRequestBook POST_REQUEST_BOOK =
+            new PostRequestBook("ワンピース", "oda", "ジャンプ", 300);
+
 
     @Autowired
     MockMvc mockMvc;
@@ -41,7 +46,7 @@ public class BookControllerTest {
 
     @Test
     void ゲットリクエストで得た全件データをjsonにして返す() throws Exception {
-        //setup
+        // setup
         List<Book> bookList = List.of(
                 new Book("1", "ワンピース", "oda", "ジャンプ", 300),
                 new Book("2", "ワンピース", "higashi", "ジャンプ", 400)
@@ -49,8 +54,7 @@ public class BookControllerTest {
 
         when(bookService.retrieveAll()).thenReturn(bookList);
 
-        // execute
-        // assert
+        // execute & assert
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/books"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -68,13 +72,12 @@ public class BookControllerTest {
 
     @Test
     void ゲットリクエストで指定したデータをjsonにして返す() throws Exception {
-        //setup
+        // setup
         Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 
         when(bookService.retrieve("1")).thenReturn(book);
 
-        // execute
-        // assert
+        // execute & assert
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/books/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -92,14 +95,11 @@ public class BookControllerTest {
         when(bookService.register(any()))
                 .thenReturn("89");
 
-        PostRequestBook postRequestBook = new PostRequestBook("ワンピース", "oda", "ジャンプ", 300);
-
-        // execute
-        // assert
+        // execute & assert
         mockMvc.perform(
                         MockMvcRequestBuilders.post("/v1/books")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(new ObjectMapper().writeValueAsString(postRequestBook))
+                                .content(new ObjectMapper().writeValueAsString(POST_REQUEST_BOOK))
                 )
                 .andExpect(status().isCreated())
                 .andExpect(header().string("Location", "http://localhost/v1/books/89"));
@@ -107,14 +107,10 @@ public class BookControllerTest {
 
     @Test
     void 更新リクエストで指定したidが存在した場合() throws Exception {
-        //setup
-        PostRequestBook postRequestBook = new PostRequestBook("ワンピース", "oda", "ジャンプ", 300);
-
-        // execute
-        // assert
+        // setup & execute & assert
         mockMvc.perform(MockMvcRequestBuilders.patch("/v1/books/2")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(postRequestBook))
+                        .content(new ObjectMapper().writeValueAsString(POST_REQUEST_BOOK))
                 )
                 .andExpect(status().isNoContent());
     }
