@@ -80,4 +80,14 @@ public class BookMapperTest {
         // assert
         assertEquals(1, actual);
     }
+
+    @Test
+    void テーブルの指定した行が存在しておらず削除できない場合() {
+        // setup
+        // execute
+        int actual = sut.delete("0");
+
+        // assert
+        assertEquals(0, actual);
+    }
 }

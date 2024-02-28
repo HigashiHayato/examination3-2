@@ -113,4 +113,16 @@ public class BookServiceTest {
                 .isInstanceOf(NotFoundBookException.class)
                 .hasMessage("99");
     }
+
+    @Test
+    void 行を削除する際指定したidがテーブルに存在する場合() {
+        // setup
+        when(mapper.delete("1")).thenReturn(1);
+
+        // execute
+        sut.delete("1");
+
+        // assert
+        verify(mapper, times(1)).delete("1");
+    }
 }
