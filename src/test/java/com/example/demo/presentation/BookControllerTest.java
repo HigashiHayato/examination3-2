@@ -18,7 +18,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -112,6 +114,15 @@ public class BookControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(POST_REQUEST_BOOK))
                 )
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void 削除リクエストで指定したidが存在した場合() throws Exception {
+        //setup
+        // execute
+        // assert
+        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/books/1"))
                 .andExpect(status().isNoContent());
     }
 }
