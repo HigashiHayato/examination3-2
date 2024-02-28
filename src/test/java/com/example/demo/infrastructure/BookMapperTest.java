@@ -71,4 +71,13 @@ public class BookMapperTest {
         // assert
         assertEquals(1, sut.update(book));
     }
+
+    @Test
+    void テーブルの指定した行を削除できる場合() {
+        // setup & execute
+        int actual = sut.delete("99");
+
+        // assert
+        assertEquals(1, actual);
+    }
 }
