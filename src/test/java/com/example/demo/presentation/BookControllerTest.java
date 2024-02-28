@@ -119,9 +119,7 @@ public class BookControllerTest {
 
     @Test
     void 削除リクエストで指定したidが存在した場合() throws Exception {
-        //setup
-        // execute
-        // assert
+        // setup & execute & assert
         mockMvc.perform(MockMvcRequestBuilders.delete("/v1/books/1"))
                 .andExpect(status().isNoContent());
     }
