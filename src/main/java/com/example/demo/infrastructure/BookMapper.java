@@ -40,4 +40,11 @@ public interface BookMapper {
      */
     String getMaxId();
 
+    /**
+     * 指定された Book を更新します.
+     *
+     * @param book 更新する Book オブジェクト
+     * @return 更新が成功した場合は1、それ以外の場合は0
+     */
+    int update(Book book);
 }

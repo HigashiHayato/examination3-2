@@ -65,10 +65,10 @@ public class BookMapperTest {
     @Test
     void テーブルの行を更新できる場合() {
         // setup
-        Book book = new Book("6", "ワンピース", "oda", "ジャンプ", 300);
+        Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 
         // execute
         // assert
-        assertEquals(1, mapper.update(book));
+        assertEquals(1, sut.update(book));
     }
 }
