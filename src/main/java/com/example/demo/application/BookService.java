@@ -88,4 +88,13 @@ public class BookService {
                 );
                 mapper.update(postBook);
         }
+
+        /**
+         * 指定された ID の Book を削除します.
+         *
+         * @param id 削除対象の Book の ID
+         */
+        public void delete(String id) {
+                int num = mapper.delete(id);
+        }
 }
