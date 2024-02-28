@@ -96,5 +96,8 @@ public class BookService {
          */
         public void delete(String id) {
                 int num = mapper.delete(id);
+                if (num == 0) {
+                        throw new NotFoundBookException(id);
+                }
         }
 }
