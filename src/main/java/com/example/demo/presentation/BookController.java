@@ -61,6 +61,8 @@ public class BookController {
     @GetMapping("v1/books/{id}")
     @ResponseStatus(HttpStatus.OK)
     public BookResponse get(@PathVariable String id) {
+        System.out.println("=======================");
+        System.out.println(id);
         return BookResponse.convertToBookResponse(bookService.retrieve(id));
     }
 

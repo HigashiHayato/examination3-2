@@ -8,7 +8,7 @@
 
     <select id="select" resultType="com.example.demo.domain.Book">
         SELECT * FROM books
-        WHERE id = #{id, jdbcType=VARCHAR}
+        WHERE id = #{id};
     </select>
 
     <insert id="insert" parameterType="com.example.demo.domain.Book">
@@ -18,7 +18,7 @@
         #{title, jdbcType=VARCHAR},
         #{author, jdbcType=VARCHAR},
         #{publisher, jdbcType=VARCHAR},
-        #{price, jdbcType=VARCHAR}
+        #{price, jdbcType=INTEGER}
         )
     </insert>
 
@@ -31,7 +31,7 @@
         SET title = #{title, jdbcType=VARCHAR},
         author = #{author, jdbcType=VARCHAR},
         publisher = #{publisher, jdbcType=VARCHAR},
-        price = #{price, jdbcType=VARCHAR}
+        price = #{price, jdbcType=INTEGER}
         WHERE id = #{id, jdbcType=VARCHAR}
     </update>
 

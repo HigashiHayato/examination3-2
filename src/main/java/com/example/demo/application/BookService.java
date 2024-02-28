@@ -37,7 +37,9 @@ public class BookService {
          * @throws NotFoundBookException 指定された ID の Book が存在しない場合
          */
         public Book retrieve(String id) {
+                System.out.println(id);
                 Book book = mapper.select(id);
+                System.out.println(book);
                 if (isNull(book)) {
                         throw new NotFoundBookException(id);
                 }
