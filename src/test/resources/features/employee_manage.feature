@@ -72,3 +72,20 @@
         かつcodeとして"0003"が返却される
         かつmessageとして"specified book [id = %s] is not found."が返却される
         かつdetailsとして空のリストが返却される
+
+  シナリオ:指定したIDの書籍情報が削除できる
+      前提適切なBaseURIが指定されている
+      もしIDを指定して書籍情報を削除する
+      ならばHTTPステータスコードとして204が返却される
+      かつ空のBodyが返却される
+      かつ書籍情報が削除されている
+
+    シナリオ:存在しないIDで書籍情報を削除すると、エラーが返却される
+      前提適切なBaseURIが指定されている
+      もし存在しないIDで書籍情報を削除する
+      ならばHTTPステータスコードとして400が返却される
+      かつContentTypeとして"application/json"が返却される
+      かつ[code、message、details]がオブジェクトで返却される
+      かつcodeとして"0003"が返却される
+      かつmessageとして"specified book [id = %s] is not found."が返却される
+      かつdetailsとして空のリストが返却される
