@@ -1,6 +1,5 @@
 package com.example.demo.application;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -18,6 +17,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 public class BookServiceTest {
+    private final Book BOOK =
+            new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 
     @InjectMocks
     private BookService sut;
@@ -52,14 +53,13 @@ public class BookServiceTest {
     @Test
     void 選択した従業員idが存在する場合() {
         // setup
-        Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
-        when(mapper.select(any())).thenReturn(book);
+        when(mapper.select(any())).thenReturn(BOOK);
 
          // execute
         Book actual = sut.retrieve("1");
 
         // assert
-        assertEquals(book, actual);
+        assertEquals(BOOK, actual);
     }
 
     @Test
@@ -92,16 +92,27 @@ public class BookServiceTest {
     @Test
     void 行を更新する際指定したidがテーブルに存在する場合() {
         // setup
-        Book existingBook = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
         PostRequestBookDto dto = new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
-        Book changedBook = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
-        when(mapper.select("1")).thenReturn(existingBook);
+        when(mapper.select("1")).thenReturn(BOOK);
 
         // execute
         sut.update(dto, "1");
 
         // assert
-        verify(mapper, times(1)).update(changedBook);
+        verify(mapper, times(1)).update(BOOK);
     }
 
+    @Test
+    void 行を更新する際指定したidがテーブルに存在しない場合() {
+        // setup
+        PostRequestBookDto dto = new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
+
+        when(mapper.select("99")).thenReturn(null);
+
+        // execute
+        // assert
+        assertThatThrownBy(() -> sut.update(dto, "99"))
+                .isInstanceOf(NotFoundBookException.class)
+                .hasMessage("99");
+    }
 }
