@@ -68,9 +68,14 @@ public class BookService {
          *
          * @param book 更新する Book の情報
          * @param id 更新対象の Book の ID
+         * @throws NotFoundBookException 指定された ID の Book が存在しない場合
          */
         public void update(PostRequestBookDto book, String id) {
                 Book existingBook = mapper.select(id);
+
+                if (isNull(existingBook)) {
+                        throw new NotFoundBookException(id);
+                }
 
                 Book postBook = new Book(
                         id,
