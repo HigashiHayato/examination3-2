@@ -105,4 +105,17 @@ public class BookControllerTest {
                 .andExpect(header().string("Location", "http://localhost/v1/books/89"));
     }
 
+    @Test
+    void 更新リクエストで指定したidが存在した場合() throws Exception {
+        //setup
+        PostRequestBook postRequestBook = new PostRequestBook("ワンピース", "oda", "ジャンプ", 300);
+
+        // execute
+        // assert
+        mockMvc.perform(MockMvcRequestBuilders.patch("/v1/book/2")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(postRequestBook))
+                )
+                .andExpect(status().isNoContent());
+    }
 }
