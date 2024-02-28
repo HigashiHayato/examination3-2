@@ -34,6 +34,7 @@ public class BookService {
          *
          * @param id 取得対象の Book の ID
          * @return 指定された ID の Book
+         * @throws NotFoundBookException 指定された ID の Book が存在しない場合
          */
         public Book retrieve(String id) {
                 Book book = mapper.select(id);
@@ -62,4 +63,22 @@ public class BookService {
                 return nextId;
         }
 
+        /**
+         * 指定された ID の Book を更新します.
+         *
+         * @param book 更新する Book の情報
+         * @param id 更新対象の Book の ID
+         */
+        public void update(PostRequestBookDto book, String id) {
+                Book existingBook = mapper.select(id);
+
+                Book postBook = new Book(
+                        id,
+                        isNull(book.title()) ? existingBook.title() : book.title(),
+                        isNull(book.author()) ? existingBook.author() : book.author(),
+                        isNull(book.publisher()) ? existingBook.publisher() : book.publisher(),
+                        isNull(book.price()) ? existingBook.price() : book.price()
+                );
+                mapper.update(postBook);
+        }
 }
