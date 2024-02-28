@@ -88,4 +88,20 @@ public class BookServiceTest {
         // assert
         assertEquals("89", actual);
     }
+
+    @Test
+    void 行を更新する際指定したidがテーブルに存在する場合() {
+        // setup
+        Book existingBook = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+        PostRequestBookDto dto = new PostRequestBookDto("ワンピース", "oda", "ジャンプ", 300);
+        Book changedBook = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+        when(mapper.select("1")).thenReturn(existingBook);
+
+        // execute
+        sut.update(dto, "1");
+
+        // assert
+        verify(mapper, times(1)).update(changedBook);
+    }
+
 }
