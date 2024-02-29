@@ -3,6 +3,8 @@ package com.example.demo.application;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
+import com.example.demo.application.exception.NotFoundBookException;
+import com.example.demo.application.exception.NotFoundBookExceptionHandler;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

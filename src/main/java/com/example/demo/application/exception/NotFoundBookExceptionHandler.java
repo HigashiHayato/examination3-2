@@ -1,5 +1,6 @@
-package com.example.demo.application;
+package com.example.demo.application.exception;
 
+import com.example.demo.application.NotFoundBookResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.exception;
 
 /**
  * 書籍が見つからない場合にスローされる例外クラスです.
@@ -6,9 +6,9 @@ package com.example.demo.application;
 public class NotFoundBookException extends RuntimeException {
 
     /**
-     * 指定されたテキストで新しい NotFoundBookException を構築します。
+     * 指定されたテキストで新しい NotFoundBookException を構築します.
      *
-     * @param text handlerで必要となる文字列.
+     * @param text handlerで必要となる文字列
      */
     public NotFoundBookException(String text) {
         super(text);

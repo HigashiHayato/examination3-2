@@ -2,6 +2,8 @@ package com.example.demo.application;
 
 import static java.util.Objects.isNull;
 
+import com.example.demo.application.exception.ApplicationErrorException;
+import com.example.demo.application.exception.NotFoundBookException;
 import com.example.demo.domain.Book;
 import com.example.demo.infrastructure.BookMapper;
 import java.util.List;
@@ -26,7 +28,11 @@ public class BookService {
          * @return 全ての Book のリスト
          */
         public List<Book> retrieveAll() {
-                return mapper.selectAll();
+                try {
+                        return mapper.selectAll();
+                } catch (Exception e) {
+                        throw new ApplicationErrorException("全件取得", e);
+                }
         }
 
         /**
@@ -37,9 +43,12 @@ public class BookService {
          * @throws NotFoundBookException 指定された ID の Book が存在しない場合
          */
         public Book retrieve(String id) {
-                System.out.println(id);
-                Book book = mapper.select(id);
-                System.out.println(book);
+                Book book;
+                try {
+                        book = mapper.select(id);
+                } catch (Exception e) {
+                        throw new ApplicationErrorException("指定取得", e);
+                }
                 if (isNull(book)) {
                         throw new NotFoundBookException(id);
                 }
@@ -53,16 +62,20 @@ public class BookService {
          * @return 挿入した書籍の ID
          */
         public String register(RequestBookDto book) {
-                String nextId = String.valueOf(Integer.parseInt(mapper.getMaxId()) + 1);
-                mapper.insert(new Book(
-                        nextId,
-                        book.title(),
-                        book.author(),
-                        book.publisher(),
-                        book.price())
-                );
+                try {
+                        String nextId = String.valueOf(Integer.parseInt(mapper.getMaxId()) + 1);
+                        mapper.insert(new Book(
+                                nextId,
+                                book.title(),
+                                book.author(),
+                                book.publisher(),
+                                book.price())
+                        );
 
-                return nextId;
+                        return nextId;
+                } catch (Exception e) {
+                        throw new ApplicationErrorException("登録", e);
+                }
         }
 
         /**
@@ -73,7 +86,12 @@ public class BookService {
          * @throws NotFoundBookException 指定された ID の Book が存在しない場合
          */
         public void update(RequestBookDto book, String id) {
-                Book existingBook = mapper.select(id);
+                Book existingBook;
+                try {
+                        existingBook = mapper.select(id);
+                } catch (Exception e) {
+                        throw new ApplicationErrorException("指定取得", e);
+                }
 
                 if (isNull(existingBook)) {
                         throw new NotFoundBookException(id);
@@ -86,7 +104,11 @@ public class BookService {
                         isNull(book.publisher()) ? existingBook.publisher() : book.publisher(),
                         isNull(book.price()) ? existingBook.price() : book.price()
                 );
-                mapper.update(postBook);
+                try {
+                        mapper.update(postBook);
+                } catch (Exception e) {
+                        throw new ApplicationErrorException("更新", e);
+                }
         }
 
         /**
@@ -95,8 +117,13 @@ public class BookService {
          * @param id 削除対象の Book の ID
          */
         public void delete(String id) {
-                int num = mapper.delete(id);
-                if (num == 0) {
+                int deleteStatusCode;
+                try {
+                        deleteStatusCode = mapper.delete(id);
+                } catch (Exception e) {
+                        throw new ApplicationErrorException("削除", e);
+                }
+                if (deleteStatusCode == 0) {
                         throw new NotFoundBookException(id);
                 }
         }

@@ -1,4 +1,4 @@
-package com.example.demo.presentation;
+package com.example.demo.presentation.exception;
 
 import com.example.demo.application.NotFoundBookResponse;
 import org.springframework.http.HttpStatus;

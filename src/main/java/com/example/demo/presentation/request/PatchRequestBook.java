@@ -1,4 +1,4 @@
-package com.example.demo.presentation;
+package com.example.demo.presentation.request;
 
 import com.example.demo.application.RequestBookDto;
 

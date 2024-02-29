@@ -2,6 +2,8 @@ package com.example.demo.presentation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.example.demo.presentation.exception.BookValidationException;
+import com.example.demo.presentation.request.PostRequestBook;
 import org.junit.jupiter.api.Test;
 
 class PostRequestBookTest {

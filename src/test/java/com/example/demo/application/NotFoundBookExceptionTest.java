@@ -1,5 +1,6 @@
 package com.example.demo.application;
 
+import com.example.demo.application.exception.NotFoundBookException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

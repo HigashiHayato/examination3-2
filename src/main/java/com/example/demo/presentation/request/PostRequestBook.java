@@ -1,8 +1,9 @@
-package com.example.demo.presentation;
+package com.example.demo.presentation.request;
 
 import static java.util.Objects.isNull;
 
 import com.example.demo.application.RequestBookDto;
+import com.example.demo.presentation.exception.BookValidationException;
 
 /**
  * POST 処理における書籍を表すレコードクラスです.

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.example.demo.application.exception.NotFoundBookException;
 import com.example.demo.domain.Book;
 import com.example.demo.infrastructure.BookMapper;
 import java.util.List;
