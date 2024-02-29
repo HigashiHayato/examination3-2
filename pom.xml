@@ -249,14 +249,6 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>${flywaydb.version}</version>
-				<configuration>
-					<url>jdbc:postgresql://localhost:5432/book_db</url>
-					<user>appuser</user>
-					<password>appuser</password>
-				</configuration>
-				<dependencies>
-					<!-- ここに必要な追加の依存関係を追加 -->
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
