@@ -26,6 +26,7 @@ public class BookService {
          * 全ての Book を取得します.
          *
          * @return 全ての Book のリスト
+         * @throws ApplicationErrorException 予期せぬ例外発生時
          */
         public List<Book> retrieveAll() {
                 try {
@@ -41,6 +42,7 @@ public class BookService {
          * @param id 取得対象の Book の ID
          * @return 指定された ID の Book
          * @throws NotFoundBookException 指定された ID の Book が存在しない場合
+         * @throws ApplicationErrorException 予期せぬ例外発生時
          */
         public Book retrieve(String id) {
                 Book book;
@@ -60,6 +62,7 @@ public class BookService {
          *
          * @param book 登録する PostRequestBookDto
          * @return 挿入した書籍の ID
+         * @throws ApplicationErrorException 予期せぬ例外発生時
          */
         public String register(RequestBookDto book) {
                 try {
@@ -84,6 +87,7 @@ public class BookService {
          * @param book 更新する Book の情報
          * @param id 更新対象の Book の ID
          * @throws NotFoundBookException 指定された ID の Book が存在しない場合
+         * @throws ApplicationErrorException 予期せぬ例外発生時
          */
         public void update(RequestBookDto book, String id) {
                 Book existingBook;
@@ -115,6 +119,7 @@ public class BookService {
          * 指定された ID の Book を削除します.
          *
          * @param id 削除対象の Book の ID
+         * @throws ApplicationErrorException 予期せぬ例外発生時
          */
         public void delete(String id) {
                 int deleteStatusCode;
