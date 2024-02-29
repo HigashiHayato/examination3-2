@@ -1,6 +1,7 @@
 package com.example.demo.presentation.exception;
 
 import com.example.demo.application.NotFoundBookResponse;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +18,7 @@ public class BookValidationExceptionHandler {
         NotFoundBookResponse response = new NotFoundBookResponse(
                 "0002",
                 "request validation error is occurred.",
-                new String[]{exception.getMessage() + " must not be blank"}
+                List.of(exception.getMessage() + " must not be blank")
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);

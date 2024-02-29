@@ -17,7 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class BookServiceTest {
+class BookServiceTest {
     private final Book BOOK =
             new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 

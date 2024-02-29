@@ -1,6 +1,7 @@
 package com.example.demo.application.exception;
 
 import com.example.demo.application.NotFoundBookResponse;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,7 +27,7 @@ public class NotFoundBookExceptionHandler {
         NotFoundBookResponse response = new NotFoundBookResponse(
                 "0003",
                 "specified book [id = " + exception.getMessage() + "] is not found.",
-                new String[0]
+                List.of()
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }

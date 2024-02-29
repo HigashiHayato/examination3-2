@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-public class BookControllerTest {
+class BookControllerTest {
 
     private final PostRequestBook POST_REQUEST_BOOK =
             new PostRequestBook("ワンピース", "oda", "ジャンプ", 300);

@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import com.example.demo.application.exception.NotFoundBookException;
 import com.example.demo.application.exception.NotFoundBookExceptionHandler;
+import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-public class NotFoundBookExceptionHandlerTest {
+class NotFoundBookExceptionHandlerTest {
 
     @InjectMocks
     NotFoundBookExceptionHandler sut;
@@ -29,7 +30,7 @@ public class NotFoundBookExceptionHandlerTest {
         NotFoundBookResponse expected = new NotFoundBookResponse(
                 "0003",
                 "specified book [id = 99] is not found.",
-                new String[0]
+                List.of()
         );
         // execute
         ResponseEntity<NotFoundBookResponse> actual = sut.handleNotFoundBookException(exception);

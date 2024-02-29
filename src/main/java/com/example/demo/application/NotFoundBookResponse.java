@@ -1,6 +1,7 @@
 package com.example.demo.application;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * 書籍関連の操作に対するレスポンスを表現するレコードクラスです.
@@ -9,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record NotFoundBookResponse(
         @JsonProperty("code") String code,
         @JsonProperty("message") String message,
-        @JsonProperty("details") String[] details
+        @JsonProperty("details") List<String> details
 ) {
 
 }

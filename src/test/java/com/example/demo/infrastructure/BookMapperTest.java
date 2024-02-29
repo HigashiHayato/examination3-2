@@ -9,7 +9,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @MybatisTest
-public class BookMapperTest {
+class BookMapperTest {
     @Autowired
     BookMapper sut;
 

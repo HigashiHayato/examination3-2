@@ -4,7 +4,7 @@ import com.example.demo.application.exception.NotFoundBookException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class NotFoundBookExceptionTest {
+class NotFoundBookExceptionTest {
 
     @Test
     void コンストラクタが指定された文字列を正しく含んでいる() {

@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import com.example.demo.application.NotFoundBookResponse;
 import com.example.demo.presentation.exception.BookValidationException;
 import com.example.demo.presentation.exception.BookValidationExceptionHandler;
+import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ class BookValidationExceptionHandlerTest {
         NotFoundBookResponse expected = new NotFoundBookResponse(
                 "0002",
                 "request validation error is occurred.",
-                new String[]{"text must not be blank"}
+                List.of("text must not be blank")
         );
 
         // execute
