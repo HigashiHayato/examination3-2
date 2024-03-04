@@ -26,12 +26,13 @@ class BookValidationExceptionHandlerTest {
     @Test
     void 正しいレスポンスが返される() {
         // setup
-        BookValidationException exception = new BookValidationException("text");
+        List<String> nullList = List.of("title", "author");
+        BookValidationException exception = new BookValidationException(nullList);
 
         NotFoundBookResponse expected = new NotFoundBookResponse(
                 "0002",
                 "request validation error is occurred.",
-                List.of("text must not be blank")
+                List.of("title must not be blank", "author must not be blank")
         );
 
         // execute
@@ -43,6 +44,4 @@ class BookValidationExceptionHandlerTest {
         assertThat(actual.getBody().details()).isEqualTo(expected.details());
         assertThat(actual.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
-
-
 }

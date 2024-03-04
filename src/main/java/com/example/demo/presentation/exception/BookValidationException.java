@@ -1,7 +1,12 @@
 package com.example.demo.presentation.exception;
 
+import java.util.List;
+import lombok.Getter;
+
+@Getter
 public class BookValidationException extends RuntimeException {
-    public BookValidationException(String text) {
-        super(text);
+    private final List<String> nullList;
+    public BookValidationException(List<String> nullList) {
+        this.nullList = nullList;
     }
 }
