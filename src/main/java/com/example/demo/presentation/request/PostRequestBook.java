@@ -6,6 +6,7 @@ import com.example.demo.application.RequestBookDto;
 import com.example.demo.presentation.exception.BookValidationException;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * POST 処理における書籍を表すレコードクラスです.
@@ -16,9 +17,15 @@ import java.util.List;
  * @param price 価格
  */
 public record PostRequestBook(
+        @Length(max = 100, message = "title は 100 文字以下")
         String title,
+
+        @Length(max = 100, message = "author は 100 文字以下")
         String author,
+
+        @Length(max = 100, message = "publisher は 100 文字以下")
         String publisher,
+
         Integer price
 ) {
     public PostRequestBook(String title, String author, String publisher, Integer price) {

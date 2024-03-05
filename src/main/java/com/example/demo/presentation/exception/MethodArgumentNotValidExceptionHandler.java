@@ -1,35 +1,27 @@
 package com.example.demo.presentation.exception;
 
 import com.example.demo.application.BookErrorResponse;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class BookValidationExceptionHandler {
+public class MethodArgumentNotValidExceptionHandler {
 
-    @ExceptionHandler(BookValidationException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<BookErrorResponse> handleValidationException(BookValidationException exception) {
+    public ResponseEntity<BookErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
 
         BookErrorResponse response = new BookErrorResponse(
-                "0002",
+                "",
                 "request validation error is occurred.",
-                createDetailList(exception.getNullList())
+                List.of(exception.getMessage() + " は 100 文字以下")
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
-
-    private List<String> createDetailList(List<String> nullList) {
-        List<String> detailList = new ArrayList<>();
-        for (String nullItem : nullList) {
-            detailList.add(nullItem + " must not be blank");
-        }
-        return detailList;
     }
 }

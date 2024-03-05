@@ -3,7 +3,7 @@ package com.example.demo.presentation;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-import com.example.demo.application.NotFoundBookResponse;
+import com.example.demo.application.BookErrorResponse;
 import com.example.demo.presentation.exception.BookValidationException;
 import com.example.demo.presentation.exception.BookValidationExceptionHandler;
 import java.util.List;
@@ -29,14 +29,14 @@ class BookValidationExceptionHandlerTest {
         List<String> nullList = List.of("title", "author");
         BookValidationException exception = new BookValidationException(nullList);
 
-        NotFoundBookResponse expected = new NotFoundBookResponse(
+        BookErrorResponse expected = new BookErrorResponse(
                 "0002",
                 "request validation error is occurred.",
                 List.of("title must not be blank", "author must not be blank")
         );
 
         // execute
-        ResponseEntity<NotFoundBookResponse> actual = sut.handleValidationException(exception);
+        ResponseEntity<BookErrorResponse> actual = sut.handleValidationException(exception);
 
         // assert
         assertThat(Objects.requireNonNull(actual.getBody()).code()).isEqualTo(expected.code());

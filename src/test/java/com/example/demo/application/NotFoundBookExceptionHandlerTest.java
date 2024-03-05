@@ -27,13 +27,13 @@ class NotFoundBookExceptionHandlerTest {
         // setup
         NotFoundBookException exception = new NotFoundBookException("99");
 
-        NotFoundBookResponse expected = new NotFoundBookResponse(
+        BookErrorResponse expected = new BookErrorResponse(
                 "0003",
                 "specified book [id = 99] is not found.",
                 List.of()
         );
         // execute
-        ResponseEntity<NotFoundBookResponse> actual = sut.handleNotFoundBookException(exception);
+        ResponseEntity<BookErrorResponse> actual = sut.handleNotFoundBookException(exception);
 
         // assert
         assertThat(Objects.requireNonNull(actual.getBody()).code()).isEqualTo(expected.code());
