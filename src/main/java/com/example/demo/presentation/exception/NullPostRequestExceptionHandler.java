@@ -9,12 +9,23 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * ポストリクエストで null のフィールドがあった場合の例外ハンドリングを行うクラスです.
+ */
 @RestControllerAdvice
-public class BookValidationExceptionHandler {
+public class NullPostRequestExceptionHandler {
 
-    @ExceptionHandler(BookValidationException.class)
+    /**
+     * NullPostRequestException が発生した場合に、適切なエラーレスポンスを生成して返します.
+     *
+     * @param exception 発生した NullPostRequestException
+     * @return エラーレスポンス
+     */
+    @ExceptionHandler(NullPostRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<BookErrorResponse> handleValidationException(BookValidationException exception) {
+    public ResponseEntity<BookErrorResponse> handleValidationException(
+            NullPostRequestException exception
+    ) {
 
         BookErrorResponse response = new BookErrorResponse(
                 "0002",

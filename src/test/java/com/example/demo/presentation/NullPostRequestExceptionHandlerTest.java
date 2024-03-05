@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import com.example.demo.application.BookErrorResponse;
-import com.example.demo.presentation.exception.BookValidationException;
-import com.example.demo.presentation.exception.BookValidationExceptionHandler;
+import com.example.demo.presentation.exception.NullPostRequestException;
+import com.example.demo.presentation.exception.NullPostRequestExceptionHandler;
 import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,10 +14,10 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
-class BookValidationExceptionHandlerTest {
+class NullPostRequestExceptionHandlerTest {
 
     @InjectMocks
-    BookValidationExceptionHandler sut;
+    NullPostRequestExceptionHandler sut;
 
     @BeforeEach
     public void setup() {
@@ -27,7 +27,7 @@ class BookValidationExceptionHandlerTest {
     void 正しいレスポンスが返される() {
         // setup
         List<String> nullList = List.of("title", "author");
-        BookValidationException exception = new BookValidationException(nullList);
+        NullPostRequestException exception = new NullPostRequestException(nullList);
 
         BookErrorResponse expected = new BookErrorResponse(
                 "0002",

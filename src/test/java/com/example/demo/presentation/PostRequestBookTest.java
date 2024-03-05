@@ -2,7 +2,7 @@ package com.example.demo.presentation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.example.demo.presentation.exception.BookValidationException;
+import com.example.demo.presentation.exception.NullPostRequestException;
 import com.example.demo.presentation.request.PostRequestBook;
 import jakarta.validation.ConstraintViolation;
 import java.util.List;
@@ -10,7 +10,6 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,28 +26,28 @@ class PostRequestBookTest {
 
     @Test
     void titleがnullの場合() {
-        assertThrows(BookValidationException.class, () -> {
+        assertThrows(NullPostRequestException.class, () -> {
             new PostRequestBook(null, "Author", "Publisher", 100);
         });
     }
 
     @Test
     void authorがnullの場合() {
-        assertThrows(BookValidationException.class, () -> {
+        assertThrows(NullPostRequestException.class, () -> {
             new PostRequestBook("title", null, "Publisher", 100);
         });
     }
 
     @Test
     void publisherがnullの場合() {
-        assertThrows(BookValidationException.class, () -> {
+        assertThrows(NullPostRequestException.class, () -> {
             new PostRequestBook("title", "Author", null, 100);
         });
     }
 
     @Test
     void priceがnullの場合() {
-        assertThrows(BookValidationException.class, () -> {
+        assertThrows(NullPostRequestException.class, () -> {
             new PostRequestBook("title", "Author", "Publisher", null);
         });
     }
@@ -60,8 +59,8 @@ class PostRequestBookTest {
 
         // execute & assert
         assertThatThrownBy(() -> new PostRequestBook(null, null, "Publisher", 100))
-                .isInstanceOf(BookValidationException.class)
-                .satisfies(e -> assertThat(((BookValidationException) e).getNullList()).isEqualTo(expected));
+                .isInstanceOf(NullPostRequestException.class)
+                .satisfies(e -> assertThat(((NullPostRequestException) e).getNullList()).isEqualTo(expected));
     }
 
     @Test

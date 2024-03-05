@@ -3,7 +3,7 @@ package com.example.demo.presentation.request;
 import static java.util.Objects.isNull;
 
 import com.example.demo.application.RequestBookDto;
-import com.example.demo.presentation.exception.BookValidationException;
+import com.example.demo.presentation.exception.NullPostRequestException;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.validator.constraints.Length;
@@ -36,7 +36,7 @@ public record PostRequestBook(
 
         List<String> nullList = createNullList();
         if (nullList.size() >= 1) {
-            throw new BookValidationException(nullList);
+            throw new NullPostRequestException(nullList);
         }
     }
 
