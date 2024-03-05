@@ -11,55 +11,63 @@ import org.hibernate.validator.constraints.Length;
 /**
  * POST 処理における書籍を表すレコードクラスです.
  *
- * @param title タイトル
- * @param author 著者
+ * @param title     タイトル
+ * @param author    著者
  * @param publisher 出版社
- * @param price 価格
+ * @param price     価格
  */
 public record PostRequestBook(
-        @Length(max = 100, message = "title は 100 文字以下")
-        String title,
+    @Length(max = 100, message = "title は 100 文字以下")
+    String title,
 
-        @Length(max = 100, message = "author は 100 文字以下")
-        String author,
+    @Length(max = 100, message = "author は 100 文字以下")
+    String author,
 
-        @Length(max = 100, message = "publisher は 100 文字以下")
-        String publisher,
+    @Length(max = 100, message = "publisher は 100 文字以下")
+    String publisher,
 
-        Integer price
+    Integer price
 ) {
-    public PostRequestBook(String title, String author, String publisher, Integer price) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.price = price;
 
-        List<String> nullList = createNullList();
-        if (nullList.size() >= 1) {
-            throw new NullPostRequestException(nullList);
-        }
+  /**
+   * タイトル、著者、出版社、価格において null のものをリストとして NullPostRequestException に渡しスローします.
+   *
+   * @param title     タイトル
+   * @param author    著者
+   * @param publisher 出版社
+   * @param price     価格
+   */
+  public PostRequestBook(String title, String author, String publisher, Integer price) {
+    this.title = title;
+    this.author = author;
+    this.publisher = publisher;
+    this.price = price;
+
+    List<String> nullList = createNullList();
+    if (nullList.size() >= 1) {
+      throw new NullPostRequestException(nullList);
     }
+  }
 
+  private List<String> createNullList() {
+    List<String> nullList = new ArrayList<>();
 
-    private List<String> createNullList() {
-        List<String> nullList = new ArrayList<>();
-
-        if (isNull(title)) {
-            nullList.add("title");
-        }
-        if (isNull(author)) {
-            nullList.add("author");
-        }
-        if (isNull(publisher)) {
-            nullList.add("publisher");
-        }
-        if (isNull(price)) {
-            nullList.add("price");
-        }
-        return nullList;
+    if (isNull(title)) {
+      nullList.add("title");
     }
-
-    public RequestBookDto convertToDto() {
-        return new RequestBookDto(title, author, publisher, price);
+    if (isNull(author)) {
+      nullList.add("author");
     }
+    if (isNull(publisher)) {
+      nullList.add("publisher");
+    }
+    if (isNull(price)) {
+      nullList.add("price");
+    }
+    return nullList;
+  }
+
+  public RequestBookDto convertToDto() {
+    return new RequestBookDto(title, author, publisher, price);
+  }
 }

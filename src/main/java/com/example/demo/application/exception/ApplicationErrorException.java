@@ -5,13 +5,13 @@ package com.example.demo.application.exception;
  */
 public class ApplicationErrorException extends RuntimeException {
 
-    /**
-     * 指定されたメッセージと例外で新しい ApplicationErrorException を構築します.
-     *
-     * @param message 文字列
-     * @param e 例外
-     */
-    public ApplicationErrorException(String message, Exception e) {
-        super(message, e);
-    }
+  /**
+   * 指定されたメッセージと例外で新しい ApplicationErrorException を構築します.
+   *
+   * @param message 文字列
+   * @param e       例外
+   */
+  public ApplicationErrorException(String message, Exception e) {
+    super(message, e);
+  }
 }

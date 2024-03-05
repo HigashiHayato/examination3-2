@@ -10,84 +10,85 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @MybatisTest
 class BookMapperTest {
-    @Autowired
-    BookMapper sut;
 
-    @Test
-    void 全件取得できる() {
-        // setup
-        List<Book> expected = List.of(
-                new Book("1", "ワンピース", "oda", "ジャンプ", 300),
-                new Book("2", "ワンピース", "higashi", "ジャンプ", 400),
-                new Book("3", "ワンピース", "togashi", "ジャンプ", 500),
-                new Book("4", "ワンピース", "kishi", "ジャンプ", 600)
-        );
+  @Autowired
+  BookMapper sut;
 
-        // execute
-        List<Book> actual = sut.selectAll();
+  @Test
+  void 全件取得できる() {
+    // setup
+    List<Book> expected = List.of(
+        new Book("1", "ワンピース", "oda", "ジャンプ", 300),
+        new Book("2", "ワンピース", "higashi", "ジャンプ", 400),
+        new Book("3", "ワンピース", "togashi", "ジャンプ", 500),
+        new Book("4", "ワンピース", "kishi", "ジャンプ", 600)
+    );
 
-        // assert
-        assertEquals(expected, actual);
-    }
+    // execute
+    List<Book> actual = sut.selectAll();
 
-    @Test
-    void idを指定してデータを取得できる() {
-        // setup
-        Book expected = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+    // assert
+    assertEquals(expected, actual);
+  }
 
-        // execute
-        Book actual = sut.select("1");
+  @Test
+  void idを指定してデータを取得できる() {
+    // setup
+    Book expected = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 
-        // assert
-        assertEquals(expected, actual);
-    }
+    // execute
+    Book actual = sut.select("1");
 
-    @Test
-    void テーブルに1行データが挿入される() {
-        // setup
-        Book book = new Book("6", "ワンピース", "oda", "ジャンプ", 300);
+    // assert
+    assertEquals(expected, actual);
+  }
 
-        // execute
-        // assert
-        assertEquals(1, sut.insert(book));
-    }
+  @Test
+  void テーブルに1行データが挿入される() {
+    // setup
+    Book book = new Book("6", "ワンピース", "oda", "ジャンプ", 300);
 
-    @Test
-    void テーブルにあるデータのうち最大のidを取得できる() {
-        // setup
-        // execute
-        String actual = sut.getMaxId();
+    // execute
+    // assert
+    assertEquals(1, sut.insert(book));
+  }
 
-        // assert
-        assertEquals("4", actual);
-    }
+  @Test
+  void テーブルにあるデータのうち最大のidを取得できる() {
+    // setup
+    // execute
+    String actual = sut.getMaxId();
 
-    @Test
-    void テーブルの行を更新できる場合() {
-        // setup
-        Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
+    // assert
+    assertEquals("4", actual);
+  }
 
-        // execute
-        // assert
-        assertEquals(1, sut.update(book));
-    }
+  @Test
+  void テーブルの行を更新できる場合() {
+    // setup
+    Book book = new Book("1", "ワンピース", "oda", "ジャンプ", 300);
 
-    @Test
-    void テーブルの指定した行を削除できる場合() {
-        // setup & execute
-        int actual = sut.delete("4");
+    // execute
+    // assert
+    assertEquals(1, sut.update(book));
+  }
 
-        // assert
-        assertEquals(1, actual);
-    }
+  @Test
+  void テーブルの指定した行を削除できる場合() {
+    // setup & execute
+    int actual = sut.delete("4");
 
-    @Test
-    void テーブルの指定した行が存在しておらず削除できない場合() {
-        // setup
-        // execute
-        int actual = sut.delete("0");
+    // assert
+    assertEquals(1, actual);
+  }
 
-        // assert
-        assertEquals(0, actual);
-    }
+  @Test
+  void テーブルの指定した行が存在しておらず削除できない場合() {
+    // setup
+    // execute
+    int actual = sut.delete("0");
+
+    // assert
+    assertEquals(0, actual);
+  }
 }

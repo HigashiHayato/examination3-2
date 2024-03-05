@@ -5,12 +5,12 @@ package com.example.demo.application.exception;
  */
 public class NotFoundBookException extends RuntimeException {
 
-    /**
-     * 指定されたテキストで新しい NotFoundBookException を構築します.
-     *
-     * @param text handlerで必要となる文字列
-     */
-    public NotFoundBookException(String text) {
-        super(text);
-    }
+  /**
+   * 指定されたテキストで新しい NotFoundBookException を構築します.
+   *
+   * @param text handlerで必要となる文字列
+   */
+  public NotFoundBookException(String text) {
+    super(text);
+  }
 }

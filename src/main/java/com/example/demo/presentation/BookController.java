@@ -28,85 +28,86 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class BookController {
 
-    /**
-     * BookService をインジェクションします.
-     */
-    private final BookService bookService;
+  /**
+   * BookService をインジェクションします.
+   */
+  private final BookService bookService;
 
-    /**
-     * 標準のエンドポイントです。"hello world"という文字列を返します.
-     *
-     * @return "hello world"
-     */
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public String standard() {
-        return "hello world";
-    }
+  /**
+   * "実技試験2 東"という文字列を返す標準のエンドポイントです.
+   *
+   * @return "hello world"
+   */
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public String standard() {
+    return "examination2";
+  }
 
-    /**
-     * すべての Book を取得するエンドポイントです.
-     *
-     * @return BooksResponseオブジェクト
-     */
-    @GetMapping("v1/books")
-    @ResponseStatus(HttpStatus.OK)
-    public BooksResponse get() {
-        return BooksResponse.of(bookService.retrieveAll());
-    }
+  /**
+   * すべての Book を取得するエンドポイントです.
+   *
+   * @return BooksResponseオブジェクト
+   */
+  @GetMapping("v1/books")
+  @ResponseStatus(HttpStatus.OK)
+  public BooksResponse get() {
+    return BooksResponse.of(bookService.retrieveAll());
+  }
 
-    /**
-     * 指定された ID の Book を取得するエンドポイントです.
-     *
-     * @param id 取得する Book の ID
-     * @return ResponseEntity オブジェクト
-     */
-    @GetMapping("v1/books/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public BookResponse get(@PathVariable String id) {
-        return BookResponse.convertToBookResponse(bookService.retrieve(id));
-    }
+  /**
+   * 指定された ID の Book を取得するエンドポイントです.
+   *
+   * @param id 取得する Book の ID
+   * @return ResponseEntity オブジェクト
+   */
+  @GetMapping("v1/books/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public BookResponse get(@PathVariable String id) {
+    return BookResponse.convertToBookResponse(bookService.retrieve(id));
+  }
 
-    /**
-     * 新しい Book を登録するエンドポイントです.
-     *
-     * @param book 登録する PostRequestBook オブジェクト
-     * @return ResponseEntity オブジェクト
-     */
-    @PostMapping("v1/books")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> post(@RequestBody @Validated PostRequestBook book, HttpServletRequest request) {
-        String nextId = bookService.register(book.convertToDto());
+  /**
+   * 新しい Book を登録するエンドポイントです.
+   *
+   * @param book 登録する PostRequestBook オブジェクト
+   * @return ResponseEntity オブジェクト
+   */
+  @PostMapping("v1/books")
+  @ResponseStatus(HttpStatus.CREATED)
+  public ResponseEntity<Void> post(@RequestBody @Validated PostRequestBook book,
+      HttpServletRequest request) {
+    String nextId = bookService.register(book.convertToDto());
 
-        URI uri = UriComponentsBuilder
-                .fromUriString(request.getRequestURL().toString())
-                .pathSegment(nextId)
-                .build()
-                .toUri();
+    URI uri = UriComponentsBuilder
+        .fromUriString(request.getRequestURL().toString())
+        .pathSegment(nextId)
+        .build()
+        .toUri();
 
-        return ResponseEntity.created(uri).build();
-    }
+    return ResponseEntity.created(uri).build();
+  }
 
-    /**
-     * 指定された ID の Book を部分的に更新するエンドポイントです.
-     *
-     * @param book 更新する Book オブジェクト
-     * @param id 更新する Book の ID
-     */
-    @PatchMapping("v1/books/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void patch(@RequestBody PatchRequestBook book, @PathVariable String id) {
-        bookService.update(book.convertToDto(), id);
-    }
+  /**
+   * 指定された ID の Book を部分的に更新するエンドポイントです.
+   *
+   * @param book 更新する Book オブジェクト
+   * @param id   更新する Book の ID
+   */
+  @PatchMapping("v1/books/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void patch(@RequestBody PatchRequestBook book, @PathVariable String id) {
+    bookService.update(book.convertToDto(), id);
+  }
 
-    /**
-     * 指定された ID の Book を削除するエンドポイントです.
-     *
-     * @param id 削除する Book の ID
-     */
-    @DeleteMapping("v1/books/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable String id) {
-        bookService.delete(id);
-    }
+  /**
+   * 指定された ID の Book を削除するエンドポイントです.
+   *
+   * @param id 削除する Book の ID
+   */
+  @DeleteMapping("v1/books/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void delete(@PathVariable String id) {
+    bookService.delete(id);
+  }
 }

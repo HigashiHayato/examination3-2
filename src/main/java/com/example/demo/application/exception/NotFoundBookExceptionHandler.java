@@ -14,21 +14,23 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class NotFoundBookExceptionHandler {
 
-    /**
-     * NotFoundBookException が発生した場合に、適切なエラーレスポンスを生成して返します.
-     *
-     * @param exception 発生した NotFoundBookException
-     * @return エラーレスポンス
-     */
-    @ExceptionHandler(NotFoundBookException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<BookErrorResponse> handleNotFoundBookException(NotFoundBookException exception) {
+  /**
+   * NotFoundBookException が発生した場合に、適切なエラーレスポンスを生成して返します.
+   *
+   * @param exception 発生した NotFoundBookException
+   * @return エラーレスポンス
+   */
+  @ExceptionHandler(NotFoundBookException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ResponseEntity<BookErrorResponse> handleNotFoundBookException(
+      NotFoundBookException exception
+  ) {
 
-        BookErrorResponse response = new BookErrorResponse(
-                "0003",
-                "specified book [id = " + exception.getMessage() + "] is not found.",
-                List.of()
-        );
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
+    BookErrorResponse response = new BookErrorResponse(
+        "0003",
+        "specified book [id = " + exception.getMessage() + "] is not found.",
+        List.of()
+    );
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+  }
 }

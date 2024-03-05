@@ -9,13 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemoApplication {
 
-	/**
-	 * アプリケーションのメインメソッドです。Spring Bootアプリケーションを起動します.
-	 *
-	 * @param args アプリケーション起動時に渡されるコマンドライン引数
-	 */
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+  /**
+   * アプリケーションのメインメソッドです。Spring Bootアプリケーションを起動します.
+   *
+   * @param args アプリケーション起動時に渡されるコマンドライン引数
+   */
+  public static void main(String[] args) {
+    SpringApplication.run(DemoApplication.class, args);
+  }
 
 }

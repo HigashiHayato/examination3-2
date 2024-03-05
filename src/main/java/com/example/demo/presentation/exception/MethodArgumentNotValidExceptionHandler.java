@@ -15,22 +15,23 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class MethodArgumentNotValidExceptionHandler {
 
-    /**
-     * MethodArgumentNotValidException が発生した場合に、適切なエラーレスポンスを生成して返します.
-     *
-     * @param exception 発生した MethodArgumentNotValidException
-     * @return エラーレスポンス
-     */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<BookErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+  /**
+   * MethodArgumentNotValidException が発生した場合に、適切なエラーレスポンスを生成して返します.
+   *
+   * @param exception 発生した MethodArgumentNotValidException
+   * @return エラーレスポンス
+   */
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ResponseEntity<BookErrorResponse> handleMethodArgumentNotValidException(
+      MethodArgumentNotValidException exception) {
 
-        BookErrorResponse response = new BookErrorResponse(
-                "",
-                "request validation error is occurred.",
-                List.of(exception.getMessage() + " は 100 文字以下")
-        );
+    BookErrorResponse response = new BookErrorResponse(
+        "",
+        "request validation error is occurred.",
+        List.of(exception.getMessage() + " は 100 文字以下")
+    );
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-    }
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+  }
 }

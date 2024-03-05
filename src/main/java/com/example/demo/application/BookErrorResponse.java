@@ -8,9 +8,9 @@ import java.util.List;
  * このクラスはJSON形式でのレスポンスを表現するために Jackson アノテーションを使用しています.
  */
 public record BookErrorResponse(
-        @JsonProperty("code") String code,
-        @JsonProperty("message") String message,
-        @JsonProperty("details") List<String> details
+    @JsonProperty("code") String code,
+    @JsonProperty("message") String message,
+    @JsonProperty("details") List<String> details
 ) {
 
 }

@@ -8,14 +8,15 @@ import lombok.Getter;
  */
 @Getter
 public class NullPostRequestException extends RuntimeException {
-    private final List<String> nullList;
 
-    /**
-     * 指定されたテキストのリストで新しい NullPostRequestException を構築します.
-     *
-     * @param nullList null のフィールドのリスト
-     */
-    public NullPostRequestException(List<String> nullList) {
-        this.nullList = nullList;
-    }
+  private final List<String> nullList;
+
+  /**
+   * 指定されたテキストのリストで新しい NullPostRequestException を構築します.
+   *
+   * @param nullList null のフィールドのリスト
+   */
+  public NullPostRequestException(List<String> nullList) {
+    this.nullList = nullList;
+  }
 }

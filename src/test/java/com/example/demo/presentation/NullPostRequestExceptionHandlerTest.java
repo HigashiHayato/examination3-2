@@ -16,32 +16,33 @@ import org.springframework.http.ResponseEntity;
 
 class NullPostRequestExceptionHandlerTest {
 
-    @InjectMocks
-    NullPostRequestExceptionHandler sut;
+  @InjectMocks
+  NullPostRequestExceptionHandler sut;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
-    @Test
-    void 正しいレスポンスが返される() {
-        // setup
-        List<String> nullList = List.of("title", "author");
-        NullPostRequestException exception = new NullPostRequestException(nullList);
+  @BeforeEach
+  public void setup() {
+    MockitoAnnotations.openMocks(this);
+  }
 
-        BookErrorResponse expected = new BookErrorResponse(
-                "0002",
-                "request validation error is occurred.",
-                List.of("title must not be blank", "author must not be blank")
-        );
+  @Test
+  void 正しいレスポンスが返される() {
+    // setup
+    List<String> nullList = List.of("title", "author");
+    NullPostRequestException exception = new NullPostRequestException(nullList);
 
-        // execute
-        ResponseEntity<BookErrorResponse> actual = sut.handleValidationException(exception);
+    BookErrorResponse expected = new BookErrorResponse(
+        "0002",
+        "request validation error is occurred.",
+        List.of("title must not be blank", "author must not be blank")
+    );
 
-        // assert
-        assertThat(Objects.requireNonNull(actual.getBody()).code()).isEqualTo(expected.code());
-        assertThat(actual.getBody().message()).isEqualTo(expected.message());
-        assertThat(actual.getBody().details()).isEqualTo(expected.details());
-        assertThat(actual.getStatusCode()).isEqualTo(BAD_REQUEST);
-    }
+    // execute
+    ResponseEntity<BookErrorResponse> actual = sut.handleValidationException(exception);
+
+    // assert
+    assertThat(Objects.requireNonNull(actual.getBody()).code()).isEqualTo(expected.code());
+    assertThat(actual.getBody().message()).isEqualTo(expected.message());
+    assertThat(actual.getBody().details()).isEqualTo(expected.details());
+    assertThat(actual.getStatusCode()).isEqualTo(BAD_REQUEST);
+  }
 }
