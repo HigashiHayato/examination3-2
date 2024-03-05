@@ -1,6 +1,6 @@
 package com.example.demo.presentation.request;
 
-import com.example.demo.application.Dto.RequestBookDto;
+import com.example.demo.application.dto.RequestBookDto;
 
 /**
  * PATCH 処理における書籍を表すレコードクラスです.
