@@ -9,6 +9,9 @@ import lombok.Getter;
 @Getter
 public class NullPostRequestException extends RuntimeException {
 
+  /**
+   * null のフィールドを格納するリストです.
+   */
   private final List<String> nullList;
 
   /**

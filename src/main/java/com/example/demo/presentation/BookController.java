@@ -34,7 +34,7 @@ public class BookController {
   private final BookService bookService;
 
   /**
-   * "実技試験2 東"という文字列を返す標準のエンドポイントです.
+   * "examination2" という文字列を返す標準のエンドポイントです.
    *
    * @return "hello world"
    */
@@ -70,13 +70,16 @@ public class BookController {
   /**
    * 新しい Book を登録するエンドポイントです.
    *
-   * @param book 登録する PostRequestBook オブジェクト
+   * @param book    登録する PostRequestBook オブジェクト
+   * @param request HttpServletRequest
    * @return ResponseEntity オブジェクト
    */
   @PostMapping("v1/books")
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<Void> post(@RequestBody @Validated PostRequestBook book,
-      HttpServletRequest request) {
+  public ResponseEntity<Void> post(
+      @RequestBody @Validated PostRequestBook book,
+      HttpServletRequest request
+  ) {
     String nextId = bookService.register(book.convertToDto());
 
     URI uri = UriComponentsBuilder

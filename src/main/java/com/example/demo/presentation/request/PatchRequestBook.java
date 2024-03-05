@@ -18,6 +18,11 @@ public record PatchRequestBook(
 
 ) {
 
+  /**
+   * RequestBookDto へ変換します.
+   *
+   * @return RequestBookDto
+   */
   public RequestBookDto convertToDto() {
     return new RequestBookDto(title, author, publisher, price);
   }
