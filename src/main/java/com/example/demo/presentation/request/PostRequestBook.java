@@ -44,7 +44,7 @@ public record PostRequestBook(
     this.price = price;
 
     List<String> nullList = createNullList();
-    if (nullList.size() >= 1) {
+    if (!nullList.isEmpty()) {
       throw new NullPostRequestException(nullList);
     }
   }

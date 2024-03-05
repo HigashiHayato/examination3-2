@@ -3,10 +3,12 @@ package com.example.demo.application;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.example.demo.application.exception.ApplicationErrorException;
 import com.example.demo.application.exception.NotFoundBookException;
 import com.example.demo.domain.Book;
 import com.example.demo.infrastructure.BookMapper;
@@ -56,6 +58,18 @@ class BookServiceTest {
   }
 
   @Test
+  void 全件取得が失敗した場合() {
+    // setup
+    doThrow(ApplicationErrorException.class)
+        .when(mapper).selectAll();
+
+    // execute & assert
+    assertThatThrownBy(() -> sut.retrieveAll())
+        .isInstanceOf(ApplicationErrorException.class)
+        .hasMessage("全件取得");
+  }
+
+  @Test
   void 選択した従業員idが存在する場合() {
     // setup
     when(mapper.select(any())).thenReturn(BOOK);
@@ -79,6 +93,17 @@ class BookServiceTest {
         .hasMessage("99");
   }
 
+  @Test
+  void 指定取得に失敗した場合() {
+    // setup
+    doThrow(ApplicationErrorException.class)
+        .when(mapper).select("aa");
+
+    // execute & assert
+    assertThatThrownBy(() -> sut.retrieve("aa"))
+        .isInstanceOf(ApplicationErrorException.class)
+        .hasMessage("指定取得");
+  }
 
   @Test
   void データを挿入した際挿入したidが返される() {
@@ -90,6 +115,18 @@ class BookServiceTest {
 
     // assert
     assertEquals("89", actual);
+  }
+
+  @Test
+  void 登録に失敗した場合() {
+    // setup
+    doThrow(ApplicationErrorException.class)
+        .when(mapper).insert(any());
+
+    // execute & assert
+    assertThatThrownBy(() -> sut.register(BOOK_DTO))
+        .isInstanceOf(ApplicationErrorException.class)
+        .hasMessage("登録");
   }
 
   @Test
@@ -138,5 +175,17 @@ class BookServiceTest {
     assertThatThrownBy(() -> sut.delete("99"))
         .isInstanceOf(NotFoundBookException.class)
         .hasMessage("99");
+  }
+
+  @Test
+  void 削除に失敗した場合() {
+    // setup
+    doThrow(ApplicationErrorException.class)
+        .when(mapper).delete(any());
+
+    // execute & assert
+    assertThatThrownBy(() -> sut.delete("1"))
+        .isInstanceOf(ApplicationErrorException.class)
+        .hasMessage("削除");
   }
 }
