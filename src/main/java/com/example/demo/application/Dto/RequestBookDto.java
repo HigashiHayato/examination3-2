@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.Dto;
 
 /**
  * リクエスト処理における書籍を表すレコードクラスです.

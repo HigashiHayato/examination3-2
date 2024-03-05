@@ -2,7 +2,7 @@ package com.example.demo.presentation.request;
 
 import static java.util.Objects.isNull;
 
-import com.example.demo.application.RequestBookDto;
+import com.example.demo.application.Dto.RequestBookDto;
 import com.example.demo.presentation.exception.NullPostRequestException;
 import java.util.ArrayList;
 import java.util.List;

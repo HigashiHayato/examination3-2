@@ -1,6 +1,6 @@
 package com.example.demo.presentation.exception;
 
-import com.example.demo.application.BookErrorResponse;
+import com.example.demo.application.response.BookErrorResponse;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpStatus;

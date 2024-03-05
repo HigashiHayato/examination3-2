@@ -3,7 +3,7 @@ package com.example.demo.presentation;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-import com.example.demo.application.BookErrorResponse;
+import com.example.demo.application.response.BookErrorResponse;
 import com.example.demo.presentation.exception.NullPostRequestException;
 import com.example.demo.presentation.exception.NullPostRequestExceptionHandler;
 import java.util.List;

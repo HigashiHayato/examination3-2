@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import com.example.demo.application.exception.NotFoundBookException;
 import com.example.demo.application.exception.NotFoundBookExceptionHandler;
+import com.example.demo.application.response.BookErrorResponse;
 import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;

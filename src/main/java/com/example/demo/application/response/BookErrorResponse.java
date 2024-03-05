@@ -1,4 +1,4 @@
-package com.example.demo.application;
+package com.example.demo.application.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
